@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <limits.h>
 
 int main()
 {
@@ -17,20 +16,15 @@ int main()
         }
     }
 
-    int najmanji_element = INT_MAX;
-
-    for (int i = 0; i <= n; i++)
+    for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j <= n; j++)
+        for (int j = 0; j < m; j++)
         {
-            if (mat[i][j] < najmanji_element)
+            for (int k = 0; k < n; i++)
             {
-                najmanji_element = mat[i][j];
             }
         }
     }
-
-    printf("%d", najmanji_element);
 
     return 0;
 }
