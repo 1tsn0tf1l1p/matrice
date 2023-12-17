@@ -1,35 +1,48 @@
 #include <stdio.h>
 
+void myswap(int *a, int *b)
+{
+    int rez = *a;
+    *a = *b;
+    *b = rez;
+}
+
 int main()
 {
 
-    int n;
-    scanf("%d", &n);
+    int n, m;
+    scanf("%d %d", &n, &m);
 
-    int mat[n][n];
-
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            scanf("%d", &mat[i][j]);
-        }
-    }
-
-    int zbir = 0;
+    int a[n][m];
 
     for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < m; j++)
         {
-            if (i + j < n - 1)
-            {
-                zbir = zbir + mat[i][j];
-            }
+            scanf("%d", &a[i][j]);
         }
     }
 
-    printf("%d", zbir);
+    for (int col = 0; col < m; col++)
+    {
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = 0;)
+                if (a[i][j] > a[i + 1][j])
+                {
+                    myswap(&a[i][j], &a[i + 1][j]);
+                }
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            printf("%5d", a[i][j]);
+        }
+        printf("\n");
+    }
 
     return 0;
 }
