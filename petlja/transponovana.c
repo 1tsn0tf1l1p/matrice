@@ -1,10 +1,7 @@
 #include <stdio.h>
 
-void myswap(int *a, int *b)
+myswap(int *a, int *b)
 {
-    int rez = *a;
-    *a = *b;
-    *b = rez;
 }
 
 int main()
@@ -22,22 +19,16 @@ int main()
         }
     }
 
-    // Sorting the entire 2D array
-    for (int col = 0; col < m; col++)
+    int transponovana[m][n];
+
+    for (int i = 0; i < n; i++)
     {
-        for (int i = 0; i < n - 1; i++)
+        for (int j = 0; j < n; j++)
         {
-            for (int j = 0; j < n - i - 1; j++)
-            {
-                if (a[j][col] > a[j + 1][col])
-                {
-                    myswap(&a[j][col], &a[j + 1][col]);
-                }
-            }
+            swap(&a[i][j], &a[j][i]);
         }
     }
 
-    // Printing the sorted array
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
