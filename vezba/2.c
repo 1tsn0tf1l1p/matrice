@@ -58,8 +58,8 @@ int main()
     int n;
     scanf("%d", &n);
 
-    int mat[n][n];
-    int nova[n][n];
+    int mat[SIZE][SIZE];
+    int nova[SIZE][SIZE];
 
     for (int i = 0; i < n; i++)
     {
@@ -73,18 +73,12 @@ int main()
     {
         for (int j = 0; j < n; j++)
         {
-            if (minimum_kolona(&mat, i, n) < minimum_vrsta(&mat, j, n))
-            {
-                nova[i][j] = minimum_kolona(&mat, i, n);
-            }
-            else if (minimum_kolona(&mat, i, n) > minimum_vrsta(&mat, j, n))
-            {
-                nova[i][j] = minimum_vrsta(&mat, j, n);
-            }
-            else
-            {
-                nova[i][j] = minimum_kolona(&mat, i, n);
-            }
+            int min_vrsta = minimum_vrsta(mat, i, n);
+            int min_kolona = minimum_kolona(mat, j, n);
+
+            int min_element = (min_vrsta < min_kolona) ? min_vrsta : min_kolona;
+
+            nova[i][j] = min_element;
         }
     }
 
@@ -92,10 +86,8 @@ int main()
     {
         for (int j = 0; j < n; j++)
         {
-            printf("%d", nova[i][j]);
+            printf("%2d", nova[i][j]);
         }
         printf("\n");
     }
-
-    return 0;
 }
