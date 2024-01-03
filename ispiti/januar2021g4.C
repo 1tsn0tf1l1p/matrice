@@ -24,40 +24,53 @@ Ispis:
 
 #include <stdio.h>
 
-void podtrougao(int mat[SIZE][SIZE], int n, int m)
+void trougao(int mat[SIZE][SIZE], int n, int m)
 {
 
     for (int x = 2; x <= n; x++)
     {
         for (int y = 2; y <= m; y++)
         {
-            if (x == y)
+            /// printf("Uso pre if");
+            if (x != y)
             {
-                for (int i = 0; i < n - x + 1; i++)
+                continue;
+            }
+
+            /// printf("Uso posle ifa");
+
+            for (int i = 0; i <= n - x; i++)
+            {
+                for (int j = 0; j <= m - y; j++)
                 {
-                    for (int j = 0; j < m - y + 1; j++)
+                    int limiter = 1;
+
+                    int brojac_parnih = 0;
+                    int broj_elemenata_trougla = 0;
+
+                    for (int p = i; p < i + x; p++)
                     {
-                        int broj_el = (x * y) / 2;
                         int brojac = 0;
 
-                        for (int p = 0; p < i + x; p++)
+                        for (int q = j; q < j + y; q++)
                         {
-                            for (int q = 0; q < j + y; q++)
+                            if (brojac < limiter)
                             {
-                                if (p >= q)
+                                brojac++;
+                                broj_elemenata_trougla++;
+
+                                if (mat[p][q] % 2 == 0)
                                 {
-                                    if (mat[p][q] % 2 == 0)
-                                    {
-                                        brojac++;
-                                    }
+                                    brojac_parnih++;
                                 }
                             }
                         }
+                        limiter++;
+                    }
 
-                        if (brojac >= broj_el)
-                        {
-                            printf("(%d, %d) - %d\n", i + x, j, x);
-                        }
+                    if (brojac_parnih > broj_elemenata_trougla / 2)
+                    {
+                        printf("(%d, %d) - %d (brojac parnih = %d, brojac el tr = %d\n", i + x - 1, j, x, brojac_parnih, broj_elemenata_trougla);
                     }
                 }
             }
@@ -68,8 +81,7 @@ void podtrougao(int mat[SIZE][SIZE], int n, int m)
 int main()
 {
 
-    int n;
-    int m;
+    int n, m;
     scanf("%d %d", &n, &m);
 
     int mat[SIZE][SIZE];
@@ -82,7 +94,7 @@ int main()
         }
     }
 
-    podtrougao(mat, n, m);
+    trougao(mat, n, m);
 
     return 0;
 }

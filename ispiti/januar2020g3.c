@@ -22,15 +22,15 @@ void podmatrica(int mat[SIZE][SIZE], int n, int dim_mat)
 {
     int brojac = 0;
 
-    for (int i = 0; i <= dim_mat - n; i++)
+    for (int i = 0; i <= n - dim_mat; i++)
     {
-        for (int j = 0; j <= dim_mat - n; j++)
+        for (int j = 0; j <= n - dim_mat; j++)
         {
             int parnost = mat[i][j] % 2;
             int flag = 1;
-            for (int p = 0; p < i + n; p++)
+            for (int p = i; p < i + dim_mat; p++)
             {
-                for (int q = 0; q < j + n; q++)
+                for (int q = j; q < j + dim_mat; q++)
                 {
                     if (mat[p][q] % 2 != parnost)
                     {
@@ -63,9 +63,9 @@ int main()
 
     int mat[SIZE][SIZE];
 
-    for (int i = 0; i < dim_mat; i++)
+    for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < dim_mat; j++)
+        for (int j = 0; j < n; j++)
         {
             scanf("%d", &mat[i][j]);
         }
